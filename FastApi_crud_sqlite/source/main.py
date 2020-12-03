@@ -1,7 +1,10 @@
 from fastapi import FastAPI, APIRouter
 import uvicorn
 
+from database_routes import db_router
+
 app = FastAPI()
+app.include_router(db_router)
 
 
 @app.get("/")
