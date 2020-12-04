@@ -3,9 +3,11 @@ import threading
 import uvicorn
 
 from database_routes import db_router
+from file_routes import file_router
 
 app = FastAPI()
 app.include_router(db_router, prefix="/customer", tags=["customer"])
+app.include_router(file_router, prefix="/file", tags=["file"])
 
 
 @app.get("/")
