@@ -5,7 +5,7 @@ def create_customer_table():
     try:
         connection = sqlite3.connect("shop.db")  # creates or connect to it
         cursor = connection.cursor()
-        sql = "create table if not exists customer(id integer primary key, name text NOT NULL, age integer,avatar text)"
+        sql = "create table if not exists customer(user_id integer PRIMARY KEY, name text , age integer, avatar text)"
         cursor.execute(sql)
         print("Table created!")
 
@@ -18,4 +18,4 @@ def create_customer_table():
 
 
 if __name__ == "__main__":
-    create_product_table()
+    create_customer_table()

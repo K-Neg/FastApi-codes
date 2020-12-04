@@ -1,0 +1,1 @@
+database_path = "database/shop.db"
