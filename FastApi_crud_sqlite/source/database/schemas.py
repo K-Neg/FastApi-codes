@@ -2,7 +2,6 @@ from pydantic import BaseModel, Field
 
 
 class CustomerSchema(BaseModel):
-    user_id: int = Field(...)
     name: str = Field(...)
     age: int = Field(...)
     avatar: str = Field(...)
@@ -10,7 +9,7 @@ class CustomerSchema(BaseModel):
     class Config:
         schema_extra = {
             "example": {
-                "user_id": 1,
+                # "user_id": 1,
                 "name": "Jorjola",
                 "age": 25,
                 "avatar": "/addAqui",
