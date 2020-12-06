@@ -1,0 +1,1 @@
+compare file and stream reponses

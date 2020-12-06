@@ -1,1 +1,0 @@
-uvicorn filesResponse:app

@@ -15,7 +15,7 @@ app.mount("/static", StaticFiles(directory="source/static"), name="static")
 templates = Jinja2Templates(directory="source/views")
 
 def request_api(indexFake):
-    time.sleep(0.6)        
+    time.sleep(1)     
     try:
         rawReceive = requests.get(url)
         rawDict = rawReceive.json()

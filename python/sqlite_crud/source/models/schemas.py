@@ -4,29 +4,29 @@ from pydantic import BaseModel, Field
 class CustomerSchema(BaseModel):
     name: str = Field(...)
     age: int = Field(...)
-    avatar: str = Field(...)
+    description: str = Field(...)
 
     class Config:
         schema_extra = {
             "example": {
                 # "user_id": 1,
-                "name": "Jorjola",
+                "name": "George",
                 "age": 25,
-                "avatar": "/avatar_default",
+                "description": "Nice Guy",
             }
         }
 
 
-class putCustomerSchema(BaseModel):
+class updateCustomerSchema(BaseModel):
     name: str = Field(...)
     age: int = Field(...)
-    avatar: str = Field(...)
+    description: str = Field(...)
 
     class Config:
         schema_extra = {
             "example": {
-                "name": "New Name",
-                "age": 32,
-                "avatar": "/avatar_default",
+                "name": "Gandalf",
+                "age": 3000,
+                "description": "Long Hair",
             }
         }

@@ -1,34 +1,15 @@
 import sqlite3
-
-from dependencies import database_path, id_checker
-
-
-async def get_last_inserted():
-    try:
-        connection = sqlite3.connect(database_path)
-        cursor = connection.cursor()
-        last_id = cursor.lastrowid
-    except Exception as error:
-        print("ErrorLastID", error)
-        last_id = ""
-    finally:
-        cursor.close()
-        connection.close()
-    return last_id
-
+database_path = "source/database/shop.db"
 
 async def create_new_customer(data):
-    parsed_data = [str(data.name), int(data.age), str(data.avatar)]
-
+    parsed_data = [str(data.name), int(data.age), str(data.description)]
     connection = sqlite3.connect(database_path)
     cursor = connection.cursor()
     try:
-        sql = "insert into customer(name, age, avatar) values(?,?,?)"
+        sql = "insert into customer(name, age, description) values(?,?,?)"
         cursor.execute(sql, parsed_data)
         connection.commit()
-        state = True
-        new_id = cursor.lastrowid
-        id_checker.set_id(int(new_id))
+        state = True       
     except Exception as error:
         print("ErrorCreate", error)
         state = False
@@ -37,8 +18,9 @@ async def create_new_customer(data):
         connection.close()
 
     if state:
-        print(new_id)
-        return new_id, data
+        return data
+    else:
+        return False
 
 
 async def retrieve_all_customers():
@@ -80,11 +62,11 @@ async def retrieve_single_customer(user_id):
 
 async def update_customer(data, user_id):
     print(type(data))
-    parsed_data = [str(data.name), int(data.age), str(data.avatar)]
+    parsed_data = [str(data.name), int(data.age), str(data.description)]
     connection = sqlite3.connect(database_path)
     cursor = connection.cursor()
     try:
-        sql = "UPDATE customer SET name = ?, age = ?, avatar = ? WHERE user_id = {idf}".format(
+        sql = "UPDATE customer SET name = ?, age = ?, description = ? WHERE user_id = {idf}".format(
             idf=str(user_id)
         )
 

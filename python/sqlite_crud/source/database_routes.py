@@ -1,12 +1,11 @@
 from fastapi import FastAPI, APIRouter, Body
-from database.schemas import CustomerSchema, putCustomerSchema
-from database.database_operations import (
+from source.models.schemas import CustomerSchema, updateCustomerSchema
+from source.models.database_operations import (
     create_new_customer,
     retrieve_all_customers,
     retrieve_single_customer,
     update_customer,
     delete_customer,
-    get_last_inserted,
 )
 
 db_router = APIRouter()
@@ -31,7 +30,7 @@ async def search_entry(id: int):
 
 
 @db_router.put("/update")
-async def put_customer(customer: putCustomerSchema, user_id: int):
+async def put_customer(customer: updateCustomerSchema, user_id: int):
     response = await update_customer(customer, user_id)
     return response
 

@@ -7,9 +7,9 @@
 </div>
 
 <div id="control">
-<label for="quantityField">Quantidade de cores:</label>
-<input type="text" id="quantityField" name="fieldColors"><br><br>
-<button type="button" onclick="callRequestData()" id="btnColors">Chamar gráfico</button>
+    <label for="quantityField">Quantidade de cores (max 30):</label>
+    <input type="text" id="quantityField" name="fieldColors" min="1" max="30"><br><br>
+    <button type="button" onclick="callRequestData()" id="btnColors">Chamar gráfico</button>
 </div>
 
 {% endblock content %}

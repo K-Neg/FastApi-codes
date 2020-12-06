@@ -10,6 +10,7 @@ html, body{
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 }
 
 #control{
@@ -22,7 +23,11 @@ body button{
     height: 2rem;
 }
 
+input{
+    border: 2px solid blue;
+}
+
 #graphContainer, #colorGraph{
-    width: 100vw;
-    height: 70vh;
+    width: 800px;
+    height: 600px;
 }
