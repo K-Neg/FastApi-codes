@@ -1,0 +1,28 @@
+<html>
+
+<body>
+    <form id="imageUploader" action="/multipart-form/" enctype="multipart/form-data" method="post">
+        <label for="files">Select a picture</label>
+        <input name="files" type="file" accept="image/png, image/jpeg">
+        <label for="name">Type your name</label>
+        <input name="name" value="Arthur">
+        <label for="code">Type your code</label>
+        <input name="code" value="32">
+        <input id="btnUploadAvatar" type="submit">
+    </form>
+</body>
+
+</html>
+
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    input {
+        margin-bottom: 1rem;
+    }
+</style>
