@@ -1,6 +1,20 @@
 import sqlite3
 
-from dependencies import database_path
+from dependencies import database_path, id_checker
+
+
+async def get_last_inserted():
+    try:
+        connection = sqlite3.connect(database_path)
+        cursor = connection.cursor()
+        last_id = cursor.lastrowid
+    except Exception as error:
+        print("ErrorLastID", error)
+        last_id = ""
+    finally:
+        cursor.close()
+        connection.close()
+    return last_id
 
 
 async def create_new_customer(data):
@@ -13,6 +27,8 @@ async def create_new_customer(data):
         cursor.execute(sql, parsed_data)
         connection.commit()
         state = True
+        new_id = cursor.lastrowid
+        id_checker.set_id(int(new_id))
     except Exception as error:
         print("ErrorCreate", error)
         state = False
@@ -21,7 +37,8 @@ async def create_new_customer(data):
         connection.close()
 
     if state:
-        return data
+        print(new_id)
+        return new_id, data
 
 
 async def retrieve_all_customers():
@@ -31,11 +48,13 @@ async def retrieve_all_customers():
         sql = "select * from customer order by name desc"
         cursor.execute(sql)
         customer_list = cursor.fetchall()
+
     except Exception as error:
         print("ErrorListing" + str(error))
     finally:
         cursor.close()
         connection.close()
+    
     return customer_list
 
 
@@ -46,7 +65,6 @@ async def retrieve_single_customer(user_id):
         sql = "select * from customer where user_id = ?"
         cursor.execute(sql, [user_id])
         customer = cursor.fetchone()
-        print(customer)
         if customer is None:
             state = False
         else:
@@ -61,6 +79,7 @@ async def retrieve_single_customer(user_id):
 
 
 async def update_customer(data, user_id):
+    print(type(data))
     parsed_data = [str(data.name), int(data.age), str(data.avatar)]
     connection = sqlite3.connect(database_path)
     cursor = connection.cursor()

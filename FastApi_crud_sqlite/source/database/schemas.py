@@ -12,7 +12,7 @@ class CustomerSchema(BaseModel):
                 # "user_id": 1,
                 "name": "Jorjola",
                 "age": 25,
-                "avatar": "/addAqui",
+                "avatar": "/avatar_default",
             }
         }
 
@@ -27,6 +27,6 @@ class putCustomerSchema(BaseModel):
             "example": {
                 "name": "New Name",
                 "age": 32,
-                "avatar": "/addAqui",
+                "avatar": "/avatar_default",
             }
         }

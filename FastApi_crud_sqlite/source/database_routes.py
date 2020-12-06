@@ -6,6 +6,7 @@ from database.database_operations import (
     retrieve_single_customer,
     update_customer,
     delete_customer,
+    get_last_inserted,
 )
 
 db_router = APIRouter()
